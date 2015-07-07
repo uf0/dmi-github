@@ -42,7 +42,7 @@ $ mkdir data
 
 ...to be done
 
-run the script
+run one of the script...eg:
 
 ``` sh
 $ node index.js

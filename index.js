@@ -14,14 +14,14 @@ var data = fs.readFileSync('data/people_user_collaborated.tsv','utf8')
 data = d3.tsv.parse(data)
 
 //var reposNumber = data.length-1,
-var reposNumber = 4000,
+//var reposNumber = 4000,
     reposCount = 0;
 
 var output = [];
 
 var writeFinalData = function(data){
   var finalData = d3.tsv.format(data);
-  fs.writeFile('output/output.tsv', finalData, function(err) {
+  fs.writeFile('output/repos/output.tsv', finalData, function(err) {
     if(err) {
         return console.log(err);
     }
@@ -44,7 +44,7 @@ var getRepos = function(user, repo){
         writeFinalData(output)
       }
     }else {
-      fs.writeFileSync('output/' + user + '_' + repo + '.json', JSON.stringify(repoData), 'utf8');
+      fs.writeFileSync('output/repos/' + user + '_' + repo + '.json', JSON.stringify(repoData), 'utf8');
       var elm = {
         user:user,
         name: repo,
@@ -77,28 +77,3 @@ var getRepos = function(user, repo){
 }
 
 getRepos(data[reposCount].user, data[reposCount].repo)
-
-// d3.tsv('data/people_user_collaborated.tsv', function(data){
-//   console.log(data.length)
-// })
-
-// var repo = github.getRepo('BBC-News-Labs', 'newsQuery');
-//
-// repo.show(function(err, repo) {
-//   console.log(repo)
-// });
-
-// var user = github.getUser();
-//
-// user.orgRepos('ajam', function(err, repos) {
-//   repos.forEach(function(d){
-//     //console.log(d.name)
-//   })
-// });
-//
-//
-// user.userRepos('gka', function(err, repos) {
-//   repos.forEach(function(d){
-//     console.log(d.name)
-//   })
-// });

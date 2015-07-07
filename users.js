@@ -13,15 +13,15 @@ var data = fs.readFileSync('data/users_list.tsv','utf8')
 
 data = d3.tsv.parse(data)
 
-//var usersNumber = data.length-1,
-var usersNumber = 5,
+var usersNumber = data.length-1,
+//var usersNumber = 5,
     usersCount = 0;
 
 //var output = [];
 
 // var writeFinalData = function(data){
 //   var finalData = d3.tsv.format(data);
-//   fs.writeFile('output/output.tsv', finalData, function(err) {
+//   fs.writeFile('output/users/output.tsv', finalData, function(err) {
 //     if(err) {
 //         return console.log(err);
 //     }
@@ -34,7 +34,7 @@ var getUser = function(user){
 
   var myuser = github.getUser();
 
-  myuser.show(function(err, userData) {
+  myuser.show(user, function(err, userData) {
     if(err){
       console.log(usersCount + '/' + usersNumber + ' ' + err)
       usersCount = usersCount + 1;
@@ -44,7 +44,7 @@ var getUser = function(user){
         console.log('finished');
       }
     }else {
-      fs.writeFileSync('output/' + user + '.json', JSON.stringify(userData), 'utf8');
+      fs.writeFileSync('output/users/' + user + '.json', JSON.stringify(userData), 'utf8');
         console.log(usersCount + '/' + usersNumber + ' ' + userData.login)
         usersCount = usersCount + 1
         if(usersCount < usersNumber){

@@ -9,6 +9,7 @@ var github = new Github({
   auth: Config.basic
 });
 
+
 var data = fs.readFileSync('data/users_list.tsv','utf8')
 
 data = d3.tsv.parse(data)

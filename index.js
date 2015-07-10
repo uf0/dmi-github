@@ -9,19 +9,19 @@ var github = new Github({
   auth: Config.basic
 });
 
-var data = fs.readFileSync('data/people_user_collaborated.tsv','utf8')
+var data = fs.readFileSync('data/extra_users_list.tsv','utf8')
 
 data = d3.tsv.parse(data)
 
-//var reposNumber = data.length-1,
+var reposNumber = data.length-1,
 //var reposNumber = 4000,
-    reposCount = 0;
+    reposCount = 4000;
 
 var output = [];
 
 var writeFinalData = function(data){
   var finalData = d3.tsv.format(data);
-  fs.writeFile('output/repos/output.tsv', finalData, function(err) {
+  fs.writeFile('output/new_users_repos/output.tsv', finalData, function(err) {
     if(err) {
         return console.log(err);
     }
@@ -44,7 +44,7 @@ var getRepos = function(user, repo){
         writeFinalData(output)
       }
     }else {
-      fs.writeFileSync('output/repos/' + user + '_' + repo + '.json', JSON.stringify(repoData), 'utf8');
+      fs.writeFileSync('output/new_users_repos/' + user + '_' + repo + '.json', JSON.stringify(repoData), 'utf8');
       var elm = {
         user:user,
         name: repo,
@@ -58,7 +58,7 @@ var getRepos = function(user, repo){
         size: repoData.size,
         default_branch: repoData.default_branch,
         open_issues_count: repoData.open_issues_count,
-        created_at: repoData.created_at,
+        pushed_at: repoData.pushed_at,
         updated_at: repoData.updated_at
         }
 

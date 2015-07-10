@@ -33,14 +33,19 @@ $ cp config.sample.js config.js
 
 open ```config.js``` file and add you login information
 
-add data folder
-
-``` sh
-$ mkdir data
-```
-####Get data sources
+####add data sources
 
 ...to be done
+
+####output file
+
+...to be done
+
+####scripts index
+
+...to be done
+
+
 
 run one of the script...eg:
 
